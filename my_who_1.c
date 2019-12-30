@@ -7,23 +7,21 @@
 #include <fcntl.h>
 #include <utmp.h>
 
+void show_info( struct utmp * utbufp );
 int main()
 {	
-	char pathname[] = "/usr/";
 	struct utmp current_record; //read info into here
 	int reclen = sizeof(current_record);
 	
 	int utmpfd;
 	
-	
-	
 	if ((utmpfd = open(UTMP_FILE, O_RDONLY)) == -1)
 	{
 		perror( UTMP_FILE);
-		return;
+		return -1;
 	}
 	
-	while (read(fd, %current_record, reclen) == reclen)
+	while (read(utmpfd, &current_record, reclen) == reclen)
 		show_info(&current_record);
 
 	close(utmpfd);
@@ -32,9 +30,9 @@ int main()
  
  void show_info( struct utmp * utbufp ){
  	
- 	printf("&-8.8s", utbufp->ut_name);
+ 	printf("%-8.8s", utbufp->ut_name);
  	printf(" ");
- 	printf("&-8.8s", utbufp->ut_line);
+ 	printf("%-8.8s", utbufp->ut_line);
  	printf(" ");
  	printf("%10ld", utbufp->ut_time);
  	printf(" ");
