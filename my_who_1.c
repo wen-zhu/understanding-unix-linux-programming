@@ -6,37 +6,45 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <utmp.h>
+#include <time.h>
 
+void show_info( struct utmp * utbufp );
 int main()
 {	
-	char pathname[] = "/usr/";
 	struct utmp current_record; //read info into here
 	int reclen = sizeof(current_record);
 	
 	int utmpfd;
 	
-	
-	
 	if ((utmpfd = open(UTMP_FILE, O_RDONLY)) == -1)
 	{
 		perror( UTMP_FILE);
-		return;
+		return -1;
 	}
 	
-	while (read(fd, %current_record, reclen) == reclen)
+	while (read(utmpfd, &current_record, reclen) == reclen)
 		show_info(&current_record);
 
 	close(utmpfd);
 	return 0;
  } 
  
+void show_time( long timeval)
+{
+	char *cp;
+	cp = ctime(&timeval);
+	printf("%12.12s", cp+4); 
+	//pick up 12 chars from pos 4
+}
  void show_info( struct utmp * utbufp ){
- 	
- 	printf("&-8.8s", utbufp->ut_name);
+ 
+//	if (utbufp->ut_type != USER_PROCESS)
+//		return;	
+ 	printf("%-8.8s", utbufp->ut_name);
  	printf(" ");
- 	printf("&-8.8s", utbufp->ut_line);
+ 	printf("%-8.8s", ctime(utbufp->ut_line));
  	printf(" ");
- 	printf("%10ld", utbufp->ut_time);
+ 	show_time(utbufp->ut_time);
  	printf(" ");
  	printf("(%s)", utbufp->ut_host);
  	printf("\n");
