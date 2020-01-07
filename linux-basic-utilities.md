@@ -1,0 +1,57 @@
+# utilities
+- stty -a (obtain a list of ternimal metacharacters)
+    - ^c: intr
+    - ^S/^Q: suspend rfesume
+    - ^D: eof
+- man -k keyword
+- cat/more/page/head/tail: listing a file
+    - more filename1 filename2
+    - head -2 filename1 (display the first 2 lines)
+- rm -i (rename/move. -i prompts if newFilename already exits)
+- cp -r (copying the entire directory structure)
+- ls -ldF (-F show file type; -d my home directory)
+- rm -irf (-i prompts confirmation; -r recursively delete; -f inhitis all error messages)
+- -rw-rw-rw- (user group others)
+    - chgrp -R (-R recursively) 
+    - chmod clusterSelectrion-newPermission
+        - clusterSelectrion: user group other all
+        - newPermission: r w x s(set user/group ID)
+        -  \+ - =(assign)
+- vim
+    - Basic commands    
+        - i a (in front of cursor; after the cursor)
+        - I A (at the beginning of curnt line; to the end of curnt line)
+        - O o (before the curnt line; after the curnt line)
+        - R (overwritten)
+    - cursor movement
+        - :4 (move to the 4th line)
+        - shift ^/shift $ (start/end of the line)
+        - shift G (to the end of file)
+    - copy/past
+        - :1, 2y (copy lines into paste buffer)
+        - Y (copy current line into paste buffer)
+        - p/:pu (paster)
+    - searching
+        - /sss/ (search forward)
+        - ?sss? (search backward)
+    - replacing
+        - :\<range>s/aa/bb (replacing first occurence aa with bb)
+        - :\<range>s/aa/bb (replacing every occurence)
+    - debugging in VIM
+        - printf("DEBUG 1\n");
+            - at beginning of file enter this
+        - Ese + q + a
+            - q indicates start the recording
+            - a indicates to store the recording in register a
+            - Esc + yy; Jump to next line; p
+                - yy copy; p paste
+            - move cursor to number 1; ctrl a
+                - ctrl a increment the number to 2
+            - q
+                - stop recording
+            - 20@a
+                - repeat this job 20 times
+                - no need :
+            - :g/DEBUG/d
+                - delete all lines contain DEBUG
+
