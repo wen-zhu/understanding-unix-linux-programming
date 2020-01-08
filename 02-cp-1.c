@@ -19,7 +19,6 @@ int main (int argc, char** argv)
         fprintf(stderr, "Cannot open %s\n",argv[1] );
         exit(1);
     }
-//    int chars;
 
     if ((out_fd=creat(argv[2], COMPYMODE)) ==-1 )
     {
@@ -29,7 +28,8 @@ int main (int argc, char** argv)
     char buf[BUFFERSIZE];
     while ((n_chars = read(in_fd, buf, BUFFERSIZE)) != 0)
     {
-       printf("%s", buf);
+        write(out_fd, buf, n_chars);wd 
+    	printf("%s", buf);
     }
     return 0;
 }
