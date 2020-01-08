@@ -1,30 +1,33 @@
 #include <stdio.h>
-#define BUDDERSIZE 4096
-#includeunistd.h>
+#define BUFFERSIZE 4096
+#define COMPYMODE 0644
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
-int mainnt argc, char** argv)
+int main (int argc, char** argv)
 {
-    int _fd, out_fd, n_chars;
-    if (gc != 3)
+    int in_fd, out_fd, n_chars;
+    if (argc != 3)
     {
-        rintf(stderr, "usage: %s source destination\n", *argv);
-        it(1); 
+        fprintf(stderr, "usage: %s source destination\n", *argv);
+        exit(1); 
     }
 
-    if (n_fd = open(argv[1], O_RDONLY))== -1)
+    if ((in_fd = open(argv[1], O_RDONLY))== -1)
     {
-        rintf(stderr, "Cannot open %s\n",argv[1] );
-        it(1);
+        fprintf(stderr, "Cannot open %s\n",argv[1] );
+        exit(1);
     }
-    int chars;
+//    int chars;
 
-    if (_chars = (out_fd=creat(argv[2], COMPYMODE))) ==-1 )
+    if ((out_fd=creat(argv[2], COMPYMODE)) ==-1 )
     {
         fprintf(stderr, "Cannot open %s\n", argv[2]);
         exit(1);
     }
     char buf[BUFFERSIZE];
-    while (read(in_fd, buf, BUFFERSIZE)==BUFFERSIZE)
+    while ((n_chars = read(in_fd, buf, BUFFERSIZE)) != 0)
     {
        printf("%s", buf);
     }

@@ -54,4 +54,10 @@
                 - no need :
             - :g/DEBUG/d
                 - delete all lines contain DEBUG
-
+# Users Files and the Manual who is first
+## contents
+## Learn any Unix command by using these four techniques
+    - Read the manual
+    - Search the manual
+    - Read the .h files
+    - follow SEE ALSO links
